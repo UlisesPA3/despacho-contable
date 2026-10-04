@@ -96,18 +96,20 @@ import ContactForm from './ContactForm.astro';
     </div>
 
     <!-- Bloque Inferior: Derechos, Logo y Enlaces Rápidos -->
-    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400">
-      <div class="flex items-center gap-3">
-        <img src="/logo.png" alt="Logo CONTADORES SA S.C." class="w-8 h-8 object-contain rounded-md" />
-        <span class="font-bold text-white">CONTADORES SA S.C.</span>
+    <div class="pt-8 flex flex-col items-start justify-between gap-6 xl:flex-row xl:items-center text-xs text-slate-400">
+      <div class="flex min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" alt="Logo CONTADORES SA S.C." class="w-8 h-8 shrink-0 object-contain rounded-md" />
+          <span class="font-bold text-white">CONTADORES SA S.C.</span>
+        </div>
         <span>— © {new Date().getFullYear()} Todos los derechos reservados.</span>
       </div>
 
-      <nav class="flex items-center gap-7 font-medium" aria-label="Enlaces rápidos de pie">
-        <a href="#inicio" class="hover:text-amber-400 transition-colors">Inicio</a>
-        <a href="#nosotros" class="hover:text-amber-400 transition-colors">Nosotros</a>
-        <a href="#servicios" class="hover:text-amber-400 transition-colors">Servicios y Tarifas</a>
-        <a href="#contacto" class="hover:text-amber-400 transition-colors">Contacto</a>
+      <nav class="grid grid-cols-2 gap-x-6 gap-y-1 font-medium sm:flex sm:flex-wrap sm:gap-x-7" aria-label="Enlaces rápidos de pie">
+        <a href="#inicio" class="flex min-h-[44px] items-center py-2 hover:text-amber-400 transition-colors">Inicio</a>
+        <a href="#nosotros" class="flex min-h-[44px] items-center py-2 hover:text-amber-400 transition-colors">Nosotros</a>
+        <a href="#servicios" class="flex min-h-[44px] items-center py-2 hover:text-amber-400 transition-colors">Servicios y Tarifas</a>
+        <a href="#contacto" class="flex min-h-[44px] items-center py-2 hover:text-amber-400 transition-colors">Contacto</a>
       </nav>
     </div>
 

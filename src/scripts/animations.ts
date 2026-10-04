@@ -64,18 +64,32 @@ function initAnimations() {
       }
     }
 
-    // Cada tarjeta controla su propia entrada, también en la columna móvil.
-    services?.querySelectorAll<HTMLElement>('.gsap-card').forEach((card) => {
-      gsap.fromTo(card, { y: 24, autoAlpha: 0 }, {
+    // Cada trigger sigue siendo independiente; el delay solo secuencia su fila.
+    services?.querySelectorAll<HTMLElement>('.gsap-card').forEach((card, index) => {
+      const rowDelay = () => {
+        const grid = card.parentElement;
+        const columns = grid
+          ? getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length
+          : 1;
+        return (index % columns) * 0.16;
+      };
+
+      gsap.fromTo(card, { y: 28, autoAlpha: 0 }, {
         y: 0,
         autoAlpha: 1,
-        duration: 0.65,
+        duration: 0.6,
+        delay: rowDelay(),
         ease: 'power2.out',
         clearProps,
         scrollTrigger: {
           trigger: card,
-          start: 'top 88%',
+          start: 'top 80%',
+          toggleActions: 'restart none none none',
           once: true,
+          // Recalcular la posición dentro de la fila si cambia el breakpoint.
+          onRefresh: (trigger) => {
+            trigger.animation?.delay(rowDelay());
+          },
         },
       });
     });

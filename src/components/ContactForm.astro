@@ -1,5 +1,7 @@
 ---
 // ContactForm.astro - Componente semántico, luminoso y accesible con identidad Navy & Gold
+import { services } from '../data/services';
+
 interface Props {
   actionUrl?: string;
   recipientEmail?: string;
@@ -52,7 +54,7 @@ const {
       maxlength="80"
       autocomplete="name"
       placeholder="Ej. Lic. Roberto Gómez"
-      class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white transition duration-200"
+      class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-500 focus:border-amber-700 focus:bg-white transition duration-200"
     />
   </div>
 
@@ -72,7 +74,7 @@ const {
         autocomplete="email"
         placeholder="ejemplo@empresa.com"
         title="Ingresa un correo electrónico válido (ej. usuario@dominio.com)"
-        class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white transition duration-200"
+        class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-500 focus:border-amber-700 focus:bg-white transition duration-200"
       />
     </div>
 
@@ -90,31 +92,27 @@ const {
         placeholder="(56) 1549-2707"
         title="Ingresa un teléfono válido de 10 a 18 dígitos"
         autocomplete="tel"
-        class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white transition duration-200"
+        class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-500 focus:border-amber-700 focus:bg-white transition duration-200"
       />
     </div>
   </div>
 
-  <!-- Campo: Tipo de Asesoría / Perfil -->
+  <!-- Campo: Servicio de Interés -->
   <div>
     <label for="service_type" class="block text-sm font-bold text-slate-900 mb-2">
-      Servicio o Plan de Interés <span class="text-rose-600" aria-hidden="true">*</span>
+      Servicio de Interés <span class="text-rose-600" aria-hidden="true">*</span>
     </label>
     <select
       id="service_type"
       name="service_type"
       required
-      class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white transition duration-200 cursor-pointer"
+      class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:border-amber-700 focus:bg-white transition duration-200 cursor-pointer"
     >
       <option value="" disabled selected>Selecciona un servicio...</option>
-      <option value="sueldos_salarios">Sueldos y Salarios (Declaración anual $500 o 30%)</option>
-      <option value="resico">RESICO Personas Físicas (Desde $900/mes)</option>
-      <option value="rif">RIF en Transición ($800 bimestral)</option>
-      <option value="actividad_empresarial">Actividad Empresarial y Honorarios (Desde $1,300/mes)</option>
-      <option value="personas_morales">Personas Morales (Desde $4,500/mes)</option>
-      <option value="regularizacion">Regularización Fiscal 5 Años ($10,000)</option>
-      <option value="asesoria_1hr">Asesoría Estratégica 1 Hora ($500)</option>
-      <option value="consulta_general">Otra Consulta Especializada</option>
+      {services.map((service) => (
+        <option value={service.id}>{service.title}</option>
+      ))}
+      <option value="consulta_general">No sé qué servicio elegir</option>
     </select>
   </div>
 
@@ -131,7 +129,7 @@ const {
       maxlength="600"
       rows="4"
       placeholder="Cuéntanos brevemente sobre tu negocio, régimen fiscal o el motivo de tu consulta..."
-      class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white transition duration-200 resize-y"
+      class="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-500 focus:border-amber-700 focus:bg-white transition duration-200 resize-y"
     ></textarea>
     <p class="mt-1.5 text-xs text-slate-500">
       Mínimo 10 caracteres, máximo 600.
@@ -143,9 +141,32 @@ const {
     <button
       type="submit"
       id="submit-contact-button"
-      class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 focus:outline-none focus:ring-4 focus:ring-amber-500/30 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 active:scale-[0.98] transition-all cursor-pointer border border-amber-300/40"
+      class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 active:scale-[0.98] transition-all cursor-pointer border border-amber-300/40"
     >
       Enviar Solicitud de Asesoría
     </button>
   </div>
 </form>
+
+
+<script>
+  const form = document.getElementById('contact-form');
+  const serviceSelect = form?.querySelector('select[name="service_type"]');
+  const servicesSection = document.getElementById('servicios');
+
+  if (serviceSelect instanceof HTMLSelectElement && servicesSection) {
+    servicesSection.querySelectorAll('a[data-service-id][href="#contacto"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        // Mantener el comportamiento habitual de abrir enlaces en otra pestaña.
+        if (event instanceof MouseEvent && (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) return;
+
+        const serviceId = link.getAttribute('data-service-id');
+        if (!serviceId || !Array.from(serviceSelect.options).some((option) => option.value === serviceId)) return;
+
+        serviceSelect.value = serviceId;
+        serviceSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        // El enlace conserva el scroll nativo y el foco no se fuerza al formulario.
+      });
+    });
+  }
+</script>

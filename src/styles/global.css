@@ -2,9 +2,32 @@
 
 @layer base {
   html {
+    --navbar-height: 89px;
+    scroll-padding-top: calc(var(--navbar-height) + 8px);
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
+
+  @media (min-width: 64rem) {
+    html {
+      --navbar-height: 105px;
+    }
+  }
+}
+
+/* El outline se mantiene visible por encima de los estilos de cada control. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-amber-700);
+  outline-offset: 3px;
+}
+
+footer :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline-color: var(--color-amber-400);
+}
+
+/* La tarjeta del formulario tiene una superficie clara dentro del footer. */
+#contact-form :where(input, select, textarea, button):focus-visible {
+  outline-color: var(--color-amber-700);
 }
 
 /* Solo ocultar mientras el cliente prepara GSAP; sin JS el contenido es visible. */
