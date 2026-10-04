@@ -1,0 +1,141 @@
+---
+// Navbar.astro - Navegación de alta gama con Logo Oficial e identidad Azul Marino y Oro
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Asegurar existencia del logo en build time
+const sourceLogo = '/Users/upa369/.gemini/antigravity/brain/6bdbbb95-2ecc-4de3-9476-f64ad1239573/.user_uploaded/media_1791071301634.png';
+const targetLogo = path.resolve('./public/logo.png');
+try {
+  if (fs.existsSync(sourceLogo) && !fs.existsSync(targetLogo)) {
+    fs.copyFileSync(sourceLogo, targetLogo);
+  }
+} catch (e) {
+  // Ignorar en entornos de solo lectura
+}
+---
+
+<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300 shadow-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logotipo y Nombre del Despacho -->
+      <a href="#inicio" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-xl p-1">
+        <img
+          src="/logo.png"
+          alt="Logotipo CONTADORES SA S.C."
+          class="w-12 h-12 object-contain rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-200"
+          loading="eager"
+        />
+        <div class="flex flex-col">
+          <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+            CONTADORES SA S.C.
+          </span>
+          <span class="text-[10px] tracking-widest uppercase font-semibold text-slate-500">
+            Despacho Contable & Fiscal
+          </span>
+        </div>
+      </a>
+
+      <!-- Menú Desktop y Acciones -->
+      <div class="hidden md:flex items-center gap-8">
+        <nav class="flex items-center gap-7" aria-label="Navegación principal">
+          <a href="#inicio" class="text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors py-2">
+            Inicio
+          </a>
+          <a href="#nosotros" class="text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors py-2">
+            Nosotros
+          </a>
+          <a href="#servicios" class="text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors py-2">
+            Servicios y Tarifas
+          </a>
+          <a href="#contacto" class="text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors py-2">
+            Contacto
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-4 pl-4 border-l border-slate-200">
+          <!-- Botón CTA Dorado / Oro Noble -->
+          <a
+            href="#contacto"
+            class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl text-sm font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 shadow-md shadow-amber-500/25 hover:shadow-lg hover:shadow-amber-500/35 active:scale-[0.98] transition-all duration-200 border border-amber-300/40"
+          >
+            Agenda tu asesoría
+          </a>
+        </div>
+      </div>
+
+      <!-- Botón Menú Móvil -->
+      <div class="flex items-center md:hidden">
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="p-2.5 rounded-xl text-slate-800 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 min-h-[44px] min-w-[44px] flex items-center justify-center"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú de navegación"
+        >
+          <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Panel Menú Móvil Desplegable -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2.5 shadow-xl">
+    <a href="#inicio" class="mobile-nav-link block px-3.5 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-amber-600 transition">
+      Inicio
+    </a>
+    <a href="#nosotros" class="mobile-nav-link block px-3.5 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-amber-600 transition">
+      Nosotros
+    </a>
+    <a href="#servicios" class="mobile-nav-link block px-3.5 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-amber-600 transition">
+      Servicios y Tarifas
+    </a>
+    <a href="#contacto" class="mobile-nav-link block px-3.5 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-amber-600 transition">
+      Contacto
+    </a>
+    <div class="pt-3">
+      <a
+        href="#contacto"
+        class="mobile-nav-link block w-full text-center px-4 py-3.5 rounded-xl text-base font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 shadow-md shadow-amber-500/25 transition"
+      >
+        Agenda tu asesoría
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Control de apertura/cierre de menú móvil
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (menuBtn && mobileMenu && iconOpen && iconClose) {
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

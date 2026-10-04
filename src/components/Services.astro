@@ -1,0 +1,237 @@
+---
+// Services.astro - Bento Grid de Servicios de Alta Gama con Precios Oficiales y Animación GSAP ScrollTrigger
+
+const services = [
+  {
+    id: "sueldos-salarios",
+    title: "Sueldos y Salarios",
+    badge: "Personas Físicas",
+    price: "$500",
+    period: "por presentación o 30% en devolución",
+    description: "Cálculo y presentación experta de tu declaración anual ante el SAT, maximizando tus saldos a favor con estricto apego a ley.",
+    features: [
+      "Presentación formal de Declaración Anual",
+      "Esquema 30% sobre devolución o $500 fijo",
+      "Revisión y validación de deducciones personales",
+      "Seguimiento puntual del estatus ante el SAT"
+    ],
+    highlight: false,
+    accentBorder: "group-hover:border-amber-400"
+  },
+  {
+    id: "resico",
+    title: "RESICO Personas Físicas",
+    badge: "Régimen Más Popular",
+    price: "Desde $900",
+    period: "al mes",
+    description: "Acompañamiento integral para contribuyentes en el Régimen Simplificado de Confianza con tasas preferenciales de ISR.",
+    features: [
+      "Declaraciones mensuales definitivas (ISR e IVA)",
+      "Declaración Anual obligatoria en tiempo y forma",
+      "Conciliación de CFDI emitidos y recibidos",
+      "Asesoría fiscal continua para conservar el régimen"
+    ],
+    highlight: true,
+    accentBorder: "border-amber-400 ring-2 ring-amber-400/40 shadow-xl shadow-amber-500/10"
+  },
+  {
+    id: "rif",
+    title: "RIF (En Transición)",
+    badge: "Régimen de Incorporación",
+    price: "$800",
+    period: "bimestral",
+    description: "Control riguroso de tus reducciones porcentuales y cumplimiento bimestral para quienes permanecen en RIF.",
+    features: [
+      "Declaraciones bimestrales definitivas SAT",
+      "Aplicación de coeficientes de reducción fiscal",
+      "Mantenimiento de opinión de cumplimiento positiva",
+      "Asesoría para migración gradual a RESICO"
+    ],
+    highlight: false,
+    accentBorder: "group-hover:border-slate-400"
+  },
+  {
+    id: "actividad-empresarial",
+    title: "Actividad Empresarial y Honorarios",
+    badge: "Profesionistas & Negocios",
+    price: "Desde $1,300",
+    period: "al mes",
+    description: "Gestión contable estratégica para médicos, abogados, consultores, arquitectos y actividades comerciales.",
+    features: [
+      "Cálculos y declaraciones provisionales de ISR e IVA",
+      "Declaración anual y balanza contable",
+      "Conciliación bancaria y opinión de cumplimiento 32-D",
+      "Optimización de gastos deducibles de operación"
+    ],
+    highlight: false,
+    accentBorder: "group-hover:border-amber-400"
+  },
+  {
+    id: "personas-morales",
+    title: "Personas Morales (Régimen General)",
+    badge: "Corporativo & PYMES",
+    price: "Desde $4,500",
+    period: "al mes",
+    description: "Ecosistema fiscal y contable robusto para sociedades mercantiles que demandan cumplimiento impecable.",
+    features: [
+      "Contabilidad electrónica mensual y balanzas XML",
+      "Presentación de DIOT y pagos provisionales",
+      "Nómina timbrada de hasta 5 empleados incluida",
+      "Revisión fiscal estratégica para toma de decisiones"
+    ],
+    highlight: false,
+    accentBorder: "group-hover:border-amber-400"
+  },
+  {
+    id: "servicios-especiales",
+    title: "Servicios Especiales y Regularización",
+    badge: "Blindaje & Soluciones",
+    price: "Cotización a medida",
+    period: "tarifas fijas transparentes",
+    description: "Intervención inmediata para rescate fiscal, actualización de ejercicios rezagados y auditoría preventiva.",
+    features: [
+      "Regularización fiscal: $10,000 por 5 años completos",
+      "Nómina adicional: $100 por empleado al mes",
+      "Asesoría fiscal personalizada 1 a 1: $500 por hora",
+      "Corrección, sustitución y cancelación de CFDIs"
+    ],
+    highlight: false,
+    accentBorder: "group-hover:border-emerald-400"
+  }
+];
+---
+
+<section id="servicios" class="py-20 md:py-32 bg-slate-50 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
+      <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-3.5 py-1.5 rounded-full border border-amber-200">
+        Planes y Tarifas Oficiales
+      </span>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-4 mb-5 leading-tight">
+        Servicios Contables y Fiscales con Precios Transparentes
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        Sin cargos ocultos ni sorpresas. Planes estructurados con la metodología de un despacho moderno para cada etapa de tu actividad.
+      </p>
+    </div>
+
+    <!-- Bento Grid (Elementos 100% visibles por defecto en HTML) -->
+    <div id="servicios-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+      {services.map((service) => (
+        <article
+          class={`gsap-card relative rounded-3xl bg-white border p-7 sm:p-8 flex flex-col justify-between transition-shadow duration-300 hover:shadow-2xl group ${
+            service.highlight
+              ? `${service.accentBorder}`
+              : `border-slate-200 ${service.accentBorder}`
+          }`}
+        >
+          {service.highlight && (
+            <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 text-[11px] font-black uppercase tracking-wider shadow-md">
+              Recomendado
+            </div>
+          )}
+
+          <div>
+            <!-- Header de la Tarjeta: Badge y Título -->
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/80">
+                {service.badge}
+              </span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">
+              {service.title}
+            </h3>
+
+            <!-- Precio Destacado -->
+            <div class="my-4 pb-4 border-b border-slate-100">
+              <div class="flex items-baseline gap-2">
+                <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                  {service.price}
+                </span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-500">
+                  {service.period}
+                </span>
+              </div>
+            </div>
+
+            <!-- Descripción -->
+            <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+              {service.description}
+            </p>
+
+            <!-- Lista de Características con Checkmarks SVG Limpios -->
+            <ul class="space-y-3 mb-8" aria-label={`Conceptos de ${service.title}`}>
+              {service.features.map((feature) => (
+                <li class="flex items-start text-xs sm:text-sm text-slate-700 leading-normal">
+                  <span class="mr-3 mt-0.5 text-amber-600 flex-shrink-0" aria-hidden="true">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Botón de Acción -->
+          <div class="pt-4 border-t border-slate-100">
+            <a
+              href="#contacto"
+              class={`w-full inline-flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer ${
+                service.highlight
+                  ? "bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 shadow-md shadow-amber-500/25 hover:shadow-lg"
+                  : "bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 group-hover:border-amber-400"
+              }`}
+            >
+              Contratar este plan
+              <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- Integración Definitiva de GSAP ScrollTrigger en Astro -->
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // En Astro, es mejor encapsular la animación en una función
+  function initAnimations() {
+    const cards = gsap.utils.toArray('.gsap-card');
+    
+    if (cards.length === 0) return;
+
+    gsap.from(cards, {
+      scrollTrigger: {
+        trigger: cards[0], // Usamos la primera tarjeta como disparador
+        start: "top 85%", // Inicia cuando el tope de la tarjeta llega al 85% de la pantalla
+      },
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "power2.out",
+      clearProps: "all" // CRÍTICO: Limpia las propiedades de GSAP al terminar para evitar bugs de resize
+    });
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnimations);
+  } else {
+    initAnimations();
+  }
+  document.addEventListener('astro:page-load', initAnimations);
+</script>
