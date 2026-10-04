@@ -6,3 +6,21 @@
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 }
+
+/* Solo ocultar mientras el cliente prepara GSAP; sin JS el contenido es visible. */
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-pending #inicio :is(.hero-badge, .hero-title, .hero-subtitle, .hero-cta-group, .hero-metric-item, .hero-dashboard-card),
+  html.motion-pending #servicios .gsap-card {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  #inicio .animate-pulse {
+    animation: none;
+  }
+}

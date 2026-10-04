@@ -1,34 +1,19 @@
----
-// Navbar.astro - Navegación de alta gama con Logo Oficial e identidad Azul Marino y Oro
-import fs from 'node:fs';
-import path from 'node:path';
-
-// Asegurar existencia del logo en build time
-const sourceLogo = '/Users/upa369/.gemini/antigravity/brain/6bdbbb95-2ecc-4de3-9476-f64ad1239573/.user_uploaded/media_1791071301634.png';
-const targetLogo = path.resolve('./public/logo.png');
-try {
-  if (fs.existsSync(sourceLogo) && !fs.existsSync(targetLogo)) {
-    fs.copyFileSync(sourceLogo, targetLogo);
-  }
-} catch (e) {
-  // Ignorar en entornos de solo lectura
-}
----
-
 <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300 shadow-xs">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
+    <div class="flex items-center justify-between gap-2 h-20">
       
       <!-- Logotipo y Nombre del Despacho -->
-      <a href="#inicio" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-xl p-1">
+      <a href="#inicio" class="flex min-w-0 items-center gap-2 sm:gap-3.5 group focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-xl p-1">
         <img
           src="/logo.png"
           alt="Logotipo CONTADORES SA S.C."
-          class="w-12 h-12 object-contain rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-200"
+          width="64"
+          height="64"
+          class="w-14 h-14 lg:w-16 lg:h-16 shrink-0 object-contain rounded-xl shadow-xs motion-safe:group-hover:scale-105 transition-transform duration-200"
           loading="eager"
         />
-        <div class="flex flex-col">
-          <span class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+        <div class="flex min-w-0 flex-col">
+          <span class="font-extrabold text-sm min-[360px]:text-base sm:text-lg tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
             CONTADORES SA S.C.
           </span>
           <span class="text-[10px] tracking-widest uppercase font-semibold text-slate-500">
@@ -38,7 +23,7 @@ try {
       </a>
 
       <!-- Menú Desktop y Acciones -->
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden xl:flex items-center gap-8">
         <nav class="flex items-center gap-7" aria-label="Navegación principal">
           <a href="#inicio" class="text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors py-2">
             Inicio
@@ -66,7 +51,7 @@ try {
       </div>
 
       <!-- Botón Menú Móvil -->
-      <div class="flex items-center md:hidden">
+      <div class="flex shrink-0 items-center xl:hidden">
         <button
           type="button"
           id="mobile-menu-btn"
@@ -88,7 +73,7 @@ try {
   </div>
 
   <!-- Panel Menú Móvil Desplegable -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2.5 shadow-xl">
+  <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2.5 shadow-xl">
     <a href="#inicio" class="mobile-nav-link block px-3.5 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-amber-600 transition">
       Inicio
     </a>

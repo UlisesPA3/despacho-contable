@@ -199,39 +199,3 @@ const services = [
 
   </div>
 </section>
-
-<!-- Integración Definitiva de GSAP ScrollTrigger en Astro -->
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // En Astro, es mejor encapsular la animación en una función
-  function initAnimations() {
-    const cards = gsap.utils.toArray('.gsap-card');
-    
-    if (cards.length === 0) return;
-
-    gsap.from(cards, {
-      scrollTrigger: {
-        trigger: cards[0], // Usamos la primera tarjeta como disparador
-        start: "top 85%", // Inicia cuando el tope de la tarjeta llega al 85% de la pantalla
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power2.out",
-      clearProps: "all" // CRÍTICO: Limpia las propiedades de GSAP al terminar para evitar bugs de resize
-    });
-  }
-
-  // Ejecutar cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAnimations);
-  } else {
-    initAnimations();
-  }
-  document.addEventListener('astro:page-load', initAnimations);
-</script>

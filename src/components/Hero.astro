@@ -170,26 +170,3 @@
     </div>
   </div>
 </section>
-
-<!-- Animación GSAP Hero al Cargar la Página -->
-<script is:inline>
-  const runHeroAnimation = () => {
-    // @ts-ignore
-    if (typeof gsap !== 'undefined') {
-      // @ts-ignore
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.8 } });
-      tl.from('.hero-badge', { y: -20, opacity: 0, duration: 0.6 })
-        .from('.hero-title', { y: 25, opacity: 0, duration: 0.7 }, '-=0.3')
-        .from('.hero-subtitle', { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
-        .from('.hero-cta-group', { y: 15, opacity: 0, duration: 0.5 }, '-=0.3')
-        .from('.hero-metric-item', { y: 15, opacity: 0, stagger: 0.1, duration: 0.4 }, '-=0.3')
-        .from('.hero-dashboard-card', { x: 30, opacity: 0, duration: 0.8 }, '-=0.6');
-    }
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runHeroAnimation);
-  } else {
-    runHeroAnimation();
-  }
-</script>
